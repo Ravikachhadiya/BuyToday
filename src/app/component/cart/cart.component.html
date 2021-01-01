@@ -1,0 +1,58 @@
+<div class="body">
+    <div class="empty-cart" *ngIf="cartDetails.length == 0">
+        <img src="https://cdn.dribbble.com/users/204955/screenshots/4930541/emptycart.png" alt="">
+        <h2>Cart is empty, add somthing to cart...</h2>
+    </div>
+    <div class="container" *ngIf="cartDetails.length != 0">
+        <div class="shopping-cart" >
+            <div class="title">
+                <h2>Shopping Cart</h2>
+                <p class="price-label">Price</p>
+            </div>
+            <div class="product-details-main-container" *ngFor="let cartProduct of cartDetails">
+                <hr>
+                <div class="product-details-container">
+                    <div class="product-image">
+                        <img src="{{cartProduct.img}}" alt="">
+                    </div>
+                    <div class="product-details">
+                        <h2 class="product-name">{{cartProduct.productName}}</h2>
+                        <div class="button">
+                            <div class="select dropdown">
+                                <a class="dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Qty: &nbsp;&nbsp;{{cartProduct.quantity}}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <li *ngFor="let number of [1,2,3,4,5]">
+                                        <a class="dropdown-item" (click)="quantityUpdate(number, cartProduct.productId)">
+                                            {{number}}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <button mat-stroked-button color="warn" (click)="deleteFromCart(cartProduct.productId)">delete</button>
+                        </div>
+                    </div>
+                    <div class="price">
+                        <h3>{{cartProduct.quantity}} x {{cartProduct.price | currency : 'INR'}} = {{cartProduct.quantity * cartProduct.price | currency : 'INR'}}</h3>
+                    </div>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="subtotal">
+            <div class="header">
+                <h2>Subtotal</h2>
+            </div>
+            <hr>
+            <div class="final-total">
+                <h2>{{subtotal | currency: 'INR' }}</h2>
+                <p>Free Delivery</p>
+            </div>
+
+            <div class="payment-btn">
+                <button mat-stroked-button color="warn" (click)="proccedToBuy()">Procced to Buy</button>
+            </div>
+        </div>
+    </div>
+</div>

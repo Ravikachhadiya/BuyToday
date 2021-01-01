@@ -1,0 +1,14 @@
+.carousel {
+  height: 300px;
+  margin: 1px;
+  padding: 20px;
+}
+
+img {
+  height: 300px;
+  object-fit: cover;
+}
+.body{
+    background-color: whitesmoke;
+    overflow: hidden;
+}

@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="empty-cart" *ngIf="productList.length == 0">
+        <img src="../../../assets/No data-rafiki.png" alt="" width="500">
+        <h2>No Product Found...</h2>
+    </div>
+    <div class="home">
+        <div class="products">
+            <div class="product-details" *ngFor="let product of productList">
+                <div class="product">
+                    <a [routerLink]="['/product', product.id]">
+                        <img src="{{ product.poster }}" alt="{{ product.title }}">
+                        <h5 class="title">{{ product.title }}</h5>
+                        <p class="description">{{ product.features[0] | slice:0:100 }}...</p>
+                    </a>
+                </div>
+                <div class="add-to-cart-btn">
+                    <button mat-stroked-button color="warn" (click)="addToCart(product.id)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

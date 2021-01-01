@@ -1,0 +1,25 @@
+<div class="body">
+    <div class="product">
+        <div class="poster">
+            <img src="{{ product.poster }}" alt="product">
+        </div>
+        <div class="details">
+            <h1 class="product-name">{{ product.title }}</h1>
+            <div class="rating">
+                <img src="../../../assets/rating.svg" alt="rating">
+                <p>{{ product.rating }}</p>
+                <p>({{product.review}})</p>
+            </div>
+            <div class="features" *ngFor="let feature of product.features">
+                <span class="feature">- {{ feature }}</span>
+            </div>
+            <div class="price">
+                <p>Starting at: <span class="amount">{{product.price | currency: 'INR'}}</span></p>
+                <p class="tax-delivery-specification">Incl.Shipping and all Taxes</p>
+            </div>
+            <div class="add-to-cart-btn">
+                    <button mat-stroked-button color="warn" (click)="addToCart(product.id)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,22 @@
+<div class="body">
+    <div class="home">
+        <div class="search-result">
+            <h2 *ngIf="productList.length != 0">Search Result for : {{searchedWord}}</h2>
+            <h2 *ngIf="productList.length == 0">No Result for : {{searchedWord}}</h2>
+        </div>
+        <div class="products">
+            <div class="product-details" *ngFor="let product of productList">
+                <div class="product">
+                    <a [routerLink]="['/product', product.id]">
+                        <img src="{{ product.poster }}" alt="{{ product.title }}">
+                        <h5 class="title">{{ product.title }}</h5>
+                        <p class="description">{{ product.features[0] | slice:0:100 }}...</p>
+                    </a>
+                </div>
+                <div class="add-to-cart-btn">
+                    <button mat-stroked-button color="warn">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

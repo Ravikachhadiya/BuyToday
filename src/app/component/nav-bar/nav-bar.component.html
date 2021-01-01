@@ -1,0 +1,52 @@
+<nav class="logo-nav fixed-top">
+    <ul class="logo-nav-list">
+        <li class="logo">
+            <span class="buy-logo-word">Buy</span>
+            <span class="today-logo-word">Today</span>
+        </li>
+        <li class="search">
+            <div class="select dropdown">
+                <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    {{category}}
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <li (click)="selectedCategory(0)">
+                        <a class="dropdown-item" [routerLink]="['/category', 0]">All Categories</a>
+                    </li>
+                    <li *ngFor="let cat of categoryList" (click)="selectedCategory(cat.id)">
+                        <a class="dropdown-item" [routerLink]="['/category', cat.id]">{{cat.categoryName}}</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="search-input">
+                <input type="text" [(ngModel)]="searchedWord">
+            </div>
+            <div class="search-button">
+                <button mat-flat-button (click)="search()" [routerLink]="['/search-product', searchedWord]">Search</button>
+            </div>
+        </li>
+        <li class="button">
+            <button mat-mini-fab (click)="gotoCart()">
+                <mat-icon class="mat-icon">shopping_cart</mat-icon>
+            </button>
+            <div class="dropdown" style="padding: 0px;">
+                <a class="nav-link select"  style="padding: 0px;" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <mat-icon class="mat-icon">account_circle</mat-icon>
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="login_signupDropdown">
+                    <a class="dropdown-item" *ngIf="!login" [routerLink]="['/login']"><i class="fa fa-sign-in" aria-hidden="true"></i> Login</a>
+                    <a class="dropdown-item" *ngIf="login" (click)="logout()"><i class="fa fa-sign-in" aria-hidden="true"></i> Logout</a>
+                    <a class="dropdown-item" *ngIf="!login" [routerLink]="['/signup']"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign-up</a>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</nav>
+<nav class="nav-bar navbar-static-top" id="category-navbar">
+    <ul class="nav-list">
+        <li><a class="category-nav" routerLink="/home">Home</a></li>
+        <li *ngFor="let cat of categoryList">
+            <a class="category-nav" [routerLink]="['/category', cat.id]">{{cat.categoryName}}</a>
+        </li>
+    </ul>
+</nav>
